@@ -18,14 +18,14 @@ datadogLogAndTrace.register({
   logToConsole: false
 })
 
-let log = datadogLogAndTrace.log
+let log = datadogLogAndTrace.logger
 let tracer = datadogLogAndTrace.tracer
 
 
 function startServer(){
   
   app.get('/', (req, res) => {
-    let span = tracer.startSpan('test-span')
+    let span = tracer.startSpan('http-span')
     span.setTag('HTTP request')
     log.info('Request to /')
     res.send('Good morning 😍')
@@ -51,6 +51,8 @@ function startServer(){
   }
 
   setTimeout(async () => {
+    log.error('Whoopsie! Have to kill the process now...')
+
     // In case you want to kill the process you should await logger.waitForFinish() to make sure all logs are sent
     await log.waitForFinish()
     process.exit(0)

@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "datadog-log-and-trace": "0.0.1",
+    "datadog-log-and-trace": "0.0.2",
     "express": "^4.17.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "datadog-log-and-trace",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nodejs library for easy logging to Datadog http intake and tracing to a datadog agent",
   "main": "datadog-log-and-trace.js",
   "scripts": {

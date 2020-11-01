@@ -19,7 +19,7 @@ module.exports = {
     if(!config.tags.some(tag => tag['env'])) config.tags.push({'env': config.environment})
 
     // Create CSV string of tags for datadog-winston
-    let tagsCsv = JSON.stringify(config.tags).replaceAll('{','').replaceAll('}','').replaceAll('[','').replaceAll(']','').replaceAll('"','')
+    let tagsCsv = JSON.stringify(config.tags).replace(/{/g,'').replace(/}/g,'').replace(/\[/g,'').replace(/]/g,'').replace(/"/g,'')
 
     let datadogWinstonInstance = new datadogWinston({
       apiKey: config.datadogApiKey,
@@ -39,6 +39,18 @@ module.exports = {
       level: config.logLevel,
       exceptionHandlers: transports // Exception handlers make sure we log even when an unhandled exception occur
     })
+
+    module.exports.logger.waitForFinish = function(){
+      return new Promise(resolve => {
+        module.exports.logger.on('finish', () => {
+          resolve()
+        })
+        // Fallback on timeout in the rare case that the logger has died
+        setTimeout(() => {
+          resolve()
+        }, 5000)
+      })
+    }
 
     module.exports.tracer = require('dd-trace').init({
       env: config.environment,

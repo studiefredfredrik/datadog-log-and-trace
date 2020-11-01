@@ -1,0 +1,26 @@
+{
+  "name": "datadog-log-and-trace",
+  "version": "0.0.1",
+  "description": "Nodejs library for easy logging to Datadog http intake and tracing to a datadog agent",
+  "main": "datadog-log-and-trace.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiefredfredrik/datadog-log-and-trace"
+  },
+  "keywords": [
+    "node",
+    "datadog",
+    "log",
+    "trace"
+  ],
+  "author": "studiefredfredrik",
+  "license": "ISC",
+  "dependencies": {
+    "datadog-winston": "^1.5.1",
+    "dd-trace": "^0.28.1",
+    "winston": "^3.3.3"
+  }
+}
